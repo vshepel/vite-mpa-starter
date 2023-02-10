@@ -2,81 +2,86 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import FastGlob from 'fast-glob';
 
-import handlebarsPlugin from 'vite-plugin-handlebars';
+import viteTwigPlugin from 'vite-plugin-twig';
 import ViteSvgSpriteWrapper from 'vite-svg-sprite-wrapper';
 
+import postcssEach from 'postcss-each';
 import postcssImport from 'postcss-import';
 import postcssMixins from 'postcss-mixins';
-import postcssNesting from 'postcss-nesting';
-import postcssIncludeMedia from 'postcss-include-media';
-import postcssCustomSelectors from 'postcss-custom-selectors';
 import postcssPxToRem from 'postcss-pxtorem';
+import postcssMinmax from 'postcss-media-minmax';
+import postcssNestedAncestors from 'postcss-nested-ancestors';
+import postcssNested from 'postcss-nested';
+import postcssCustomMedia from 'postcss-custom-media';
+import postcssCustomSelectors from 'postcss-custom-selectors';
 import autoprefixer from 'autoprefixer';
 
-/*
-* TODO: Vercel deploy
-* */
+import globalData from './src/data.json';
 
 export default defineConfig({
-  root: './src',
-  appType: 'mpa',
-  server: {
-    watch: {
-      usePolling: true
+    root: './src',
+    appType: 'mpa',
+    server: {
+        watch: {
+            usePolling: true,
+        },
+        host: true,
     },
-    host: true
-  },
-  plugins: [
-    handlebarsPlugin({
-      partialDirectory: resolve(__dirname, './src/partials')
-    }),
-    ViteSvgSpriteWrapper()
-  ],
-  css: {
-    postcss: {
-      plugins: [
-        postcssImport,
-        postcssMixins,
-        postcssNesting,
-        postcssCustomSelectors,
-        postcssIncludeMedia({
-          ruleName: 'mq',
-          breakpoints: {
-            xs: '0',
-            sm: '576px',
-            md: '768px',
-            lg: '992px',
-            xl: '1200px',
-            xxl: '1400px',
-          }
+    plugins: [
+        viteTwigPlugin({
+            globals: {
+                global: globalData
+            },
+            settings: {
+                'twig options': {
+                    namespaces: { root: './src/templates/' },
+                },
+            },
         }),
-        autoprefixer,
-        postcssPxToRem
-      ]
-    }
-  },
-  build: {
-    outDir: resolve(__dirname, 'dist'),
-    emptyOutDir: true,
-    rollupOptions: {
-      input: FastGlob.sync(['./src/*.html']).map((entry) => resolve(__dirname, entry)),
-      output: {
-        chunkFileNames: 'scripts/[name].js',
-        entryFileNames: 'scripts/[name].js',
-        assetFileNames: (assetInfo) => {
-          let extType = assetInfo.name.split('.').at(1);
-          if (/css$/.test(extType)) {
-            extType = 'styles';
-          } else if (/png$|jpe?g$|svg$|gif$|tiff$|bmp$|ico$/.test(extType)) {
-            extType = 'images';
-          } else if (/ttf$|woff$|woff2$/.test(extType)) {
-            extType = 'fonts';
-          } else {
-            extType = 'misc';
-          }
-          return `${extType}/[name][extname]`;
-        }
-      }
-    }
-  }
+        ViteSvgSpriteWrapper(),
+    ],
+    css: {
+        postcss: {
+            plugins: [
+                postcssImport,
+                postcssMixins,
+                postcssEach,
+                postcssCustomSelectors,
+                postcssNestedAncestors,
+                postcssNested,
+                postcssCustomMedia,
+                postcssMinmax,
+                autoprefixer,
+                postcssPxToRem,
+            ],
+        },
+    },
+    build: {
+        outDir: resolve(__dirname, 'dist'),
+        emptyOutDir: true,
+        rollupOptions: {
+            input: FastGlob.sync(['./src/*.html']).map((entry) =>
+                resolve(__dirname, entry)
+            ),
+            output: {
+                chunkFileNames: 'scripts/[name].js',
+                entryFileNames: 'scripts/[name].js',
+                assetFileNames: (assetInfo) => {
+                    let extType = assetInfo.name.split('.').at(1);
+                    if (/css$/.test(extType)) {
+                        extType = 'styles';
+                    } else if (
+                        /png$|jpe?g$|svg$|gif$|tiff$|bmp$|ico$/.test(extType)
+                    ) {
+                        extType = 'images';
+                    } else if (/ttf$|woff$|woff2$/.test(extType)) {
+                        extType = 'fonts';
+                    } else {
+                        extType = 'misc';
+                    }
+                    return `${extType}/[name][extname]`;
+                },
+            },
+        },
+    },
 });

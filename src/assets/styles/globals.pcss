@@ -1,0 +1,23 @@
+@custom-selector :--heading :--top-heading, :--low-heading;
+@custom-selector :--top-heading h1, h2, h3;
+@custom-selector :--low-heading h4, h5, h6;
+
+body {
+    font-family: var(--font-primary);
+    font-size: 18px;
+}
+
+:--heading {
+    font-family: var(--font-secondary);
+}
+
+input {
+    &::placeholder {
+        color: var(--color-secondary);
+    }
+}
+
+ul,
+ol {
+    @mixin reset-ul;
+}

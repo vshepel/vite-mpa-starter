@@ -1,0 +1,13 @@
+{
+    "app": "vite-mpa-starter",
+    "menu": {
+        "home": {
+            "link": "/",
+            "label": "Home"
+        },
+        "page": {
+            "link": "/page.html",
+            "label": "Page"
+        }
+    }
+}

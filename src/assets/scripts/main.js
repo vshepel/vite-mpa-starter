@@ -1,7 +1,7 @@
-import "../styles/main.css";
+import '../styles/+.pcss';
 
-import { setupCounter } from "./Components/Counter.js";
+import { setupCounter } from './Components/Counter.js';
 
 (function () {
-  setupCounter(document.getElementById("counter"));
+    setupCounter(document.getElementById('counter'));
 })();

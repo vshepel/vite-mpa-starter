@@ -1,0 +1,21 @@
+{% extends 'root::layouts/default.twig' %}
+
+{% block page %}
+    <section>
+        <div class="container">
+            <h1>
+                <svg class="icon icon--size-24" aria-hidden="true">
+                    <use xlink:href="/images/sprite.svg#apps"></use>
+                </svg>
+                {{ title }}
+            </h1>
+            <input type="text" placeholder="Search" />
+
+            <ul>
+                <li>List item</li>
+                <li>List item</li>
+                <li>List item</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}

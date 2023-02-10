@@ -1,0 +1,22 @@
+.container,
+.container-fluid {
+    @mixin make-container;
+}
+
+.container {
+    @media (--sm-up) {
+        max-width: 540px;
+    }
+    @media (--md-up) {
+        max-width: 720px;
+    }
+    @media (--lg-up) {
+        max-width: 960px;
+    }
+    @media (--xl-up) {
+        max-width: 1140px;
+    }
+    @media (--xxl-up) {
+        max-width: 1400px;
+    }
+}

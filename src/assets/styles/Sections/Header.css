@@ -1,7 +1,0 @@
-.header {
-  background: var(--color-primary);
-
-  & a {
-    color: red;
-  }
-}

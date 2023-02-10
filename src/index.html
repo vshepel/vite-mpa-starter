@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {{> _head title="Home page" }}
-  </head>
-  <body>
-    {{> _header }}
-
-    <h1>Home page</h1>
-    <button id="counter"></button>
-    <svg class="icon" aria-hidden="true">
-      <use xlink:href="/images/sprite.svg#apps"></use>
-    </svg>
-
-    {{> _footer }}
-    <script type="module" src="/assets/scripts/main.js"></script>
-  </body>
-</html>
+<script type="application/json" data-template="./src/templates/index.twig">
+    {
+        "title": "Home page"
+    }
+</script>

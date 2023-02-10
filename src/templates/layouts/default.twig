@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include 'root::partials/head.twig' %}
+    </head>
+    <body>
+        {% include 'root::partials/header.twig' %}
+
+        {% block page %}{% endblock %}
+
+        <script type="module" src="/assets/scripts/main.js"></script>
+    </body>
+</html>

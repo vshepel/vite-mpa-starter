@@ -1,0 +1,26 @@
+.header {
+    background: var(--color-primary);
+
+    @media (--xl) {
+        background: black;
+    }
+
+    &__nav {
+        ul {
+            display: flex;
+        }
+    }
+
+    &__item {
+        &:hover ^&__link {
+            box-shadow: inset 0 -3px 0 0 hwb(0 0% 90%);
+        }
+    }
+
+    &__link {
+        color: var(--color-secondary);
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px;
+    }
+}

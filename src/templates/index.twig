@@ -1,0 +1,5 @@
+{% extends 'root::layouts/default.twig' %}
+
+{% block page %}
+    {% include 'root::partials/sections/test.twig' with {'foo': 'bar'} %}
+{% endblock %}

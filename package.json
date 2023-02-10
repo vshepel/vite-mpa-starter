@@ -1,53 +1,63 @@
 {
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint --ext .js --fix src/scripts",
-    "format": "prettier --check --write src",
-    "check": "pnpm format && pnpm lint"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "eslint": "^8.33.0",
-    "eslint-config-prettier": "^8.6.0",
-    "fast-glob": "^3.2.12",
-    "postcss": "^8.4.21",
-    "postcss-custom-selectors": "^7.1.1",
-    "postcss-import": "^15.1.0",
-    "postcss-include-media": "^1.1.1",
-    "postcss-mixins": "^9.0.4",
-    "postcss-nesting": "^11.1.0",
-    "postcss-pxtorem": "^6.0.0",
-    "prettier": "^2.8.3",
-    "vite": "^4.1.1",
-    "vite-plugin-full-reload": "^1.0.5",
-    "vite-plugin-handlebars": "^1.6.0",
-    "vite-svg-sprite-wrapper": "^1.0.3"
-  },
-  "dependencies": {
-    "@alpinejs/mask": "^3.11.1",
-    "alpinejs": "^3.11.1",
-    "sanitize.css": "^13.0.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "node": true,
-      "es6": true
+    "private": true,
+    "type": "module",
+    "packageManager": "pnpm@7.26.3",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build && prettier --write ./dist/*.html",
+        "preview": "vite preview --open",
+        "lint": "eslint --ext .js --fix ./src/scripts",
+        "format": "prettier --check --write ./src",
+        "check": "pnpm format && pnpm lint"
     },
-    "extends": [
-      "eslint:recommended",
-      "eslint-config-prettier"
-    ],
-    "parserOptions": {
-      "sourceType": "module"
+    "devDependencies": {
+        "autoprefixer": "^10.4.13",
+        "eslint": "^8.33.0",
+        "eslint-config-prettier": "^8.6.0",
+        "fast-glob": "^3.2.12",
+        "postcss": "^8.4.21",
+        "postcss-custom-media": "^9.1.2",
+        "postcss-custom-selectors": "^7.1.2",
+        "postcss-each": "^1.1.0",
+        "postcss-import": "^15.1.0",
+        "postcss-media-minmax": "^5.0.0",
+        "postcss-mixins": "^9.0.4",
+        "postcss-nested": "^6.0.0",
+        "postcss-nested-ancestors": "^3.0.0",
+        "postcss-pxtorem": "^6.0.0",
+        "prettier": "^2.8.4",
+        "vite": "^4.1.1",
+        "vite-plugin-full-reload": "^1.0.5",
+        "vite-plugin-twig": "^2.1.1",
+        "vite-svg-sprite-wrapper": "^1.0.3"
+    },
+    "dependencies": {
+        "sanitize.css": "^13.0.0"
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "node": true,
+            "es6": true
+        },
+        "extends": [
+            "eslint:recommended",
+            "eslint-config-prettier"
+        ],
+        "parserOptions": {
+            "sourceType": "module"
+        }
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "singleQuote": true,
+        "overrides": [
+            {
+                "files": ["**/*.pcss", "**/*.css"],
+                "options": {
+                    "singleQuote": false
+                }
+            }
+        ]
     }
-  },
-  "prettier": {
-    "tabWidth": 2,
-    "singleQuote": true
-  }
 }

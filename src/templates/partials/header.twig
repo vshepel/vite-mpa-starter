@@ -1,0 +1,11 @@
+<header class="header">
+    <div class="container">
+        <nav class="header__nav">
+            <ul>
+                {% for item in global.menu %}
+                    <li class="header__item"><a class="header__link" href="{{ item.link }}">{{ item.label }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</header>
